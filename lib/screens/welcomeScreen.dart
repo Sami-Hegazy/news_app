@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newsapp/api/posts_api.dart';
 import 'package:page_view_indicator/page_view_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../PageModel.dart';
@@ -14,6 +15,7 @@ class welcomeScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _welcomeScreenState extends State<welcomeScreen> {
+
   List<PageModel> pages;
 
   ValueNotifier<int> _pageViewNotifier = ValueNotifier(0);
@@ -44,6 +46,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     _addPages();
 
     return Scaffold(

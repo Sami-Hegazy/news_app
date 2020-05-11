@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/api/authors_api.dart';
+import 'package:newsapp/api/categories_api.dart';
+import 'package:newsapp/api/posts_api.dart';
+import 'package:newsapp/api/users_api.dart';
 import 'package:newsapp/screens/home_tabs/favourites.dart';
 import 'package:newsapp/screens/home_tabs/popular.dart';
 import 'package:newsapp/screens/home_tabs/whats_new.dart';
+import 'package:newsapp/screens/pages/About.dart';
+import 'package:newsapp/screens/pages/contact.dart';
+import 'package:newsapp/screens/pages/help.dart';
+import 'package:newsapp/screens/pages/settings.dart';
 import 'package:newsapp/shared_ui/navigation_drawer.dart';
 
 
@@ -15,8 +21,6 @@ enum popUopMenu { Help, About, Contact, Settings }
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-
-  AuthorsAPI authorsAPI = AuthorsAPI();
 
   TabController _tabController;
 
@@ -34,8 +38,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-
-    authorsAPI.fetchAllAuthors();
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: Center(
         child: TabBarView(
           children: [
-            whtsNew(),
+            whatsNew(),
             popular(),
             favourites(),
           ],
@@ -88,7 +90,29 @@ class _HomeScreenState extends State<HomeScreen>
         ];
       },
       onSelected: (popUopMenu menu) {
+        switch (menu){
 
+          case popUopMenu.Help:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return Help();
+            }));
+            break;
+          case popUopMenu.About:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return AboutUs();
+            }));
+            break;
+          case popUopMenu.Contact:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return ContactUs();
+            }));
+            break;
+          case popUopMenu.Settings:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return Settings();
+            }));
+            break;
+        }
       },
     );
   }
